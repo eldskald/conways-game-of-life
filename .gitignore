@@ -1,0 +1,17 @@
+
+# project
+/lib
+/include
+/.dev-server
+conways-game-of-life.*
+linux.zip
+windows.zip
+webgl.zip
+.env
+
+# ripgrep
+.rgignore
+
+# clangd
+/.cache
+compile_commands.json
