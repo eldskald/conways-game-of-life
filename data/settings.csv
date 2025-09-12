@@ -1,3 +1,25 @@
 Window Title,Conway's Game of Life
-Window Resolution,1280,720
+Window Resolution,544,636
 Target FPS,60
+Grid Coords,16,16
+Grid Size,512,512
+Step Button Coords,82,544
+Step Button Size,64,32
+Step Button Text,Step
+Play Button Coords,154,544
+Play Button Size,64,32
+Play Button Text,Play
+Update Rate Plus Coords,436,548
+Update Rate Plus Size,24,24
+Update Rate Minus Coords,386,548
+Update Rate Minus Size,24,24
+Update Rate Text,Updates per sec:
+Update Rate Text Coords,270,544
+Update Rate Bounds,10,30
+Update Rate Step,5
+Next Pattern Coords,144,588
+Next Pattern Size,96,32
+Next Pattern Text,Next
+Previous Pattern Coords,304,588
+Previous Pattern Size,96,32
+Previous Pattern Text,Back

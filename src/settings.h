@@ -1,12 +1,52 @@
 #pragma once
 
-#define WINDOW_TITLE_MAX_SIZE 64
+#define TITLE_MAX_SIZE 64
+#define BTNSTR_MAX_SIZE 8
+#define TXTSTR_MAX_SIZE 64
 
 typedef struct {
-    char window_title[WINDOW_TITLE_MAX_SIZE + 1];
+    char window_title[TITLE_MAX_SIZE + 1];
     int window_res_x;
     int window_res_y;
     int window_target_fps;
+    float grid_x;
+    float grid_y;
+    float grid_w;
+    float grid_h;
+    float step_button_x;
+    float step_button_y;
+    float step_button_w;
+    float step_button_h;
+    char step_button_text[BTNSTR_MAX_SIZE + 1];
+    float play_button_x;
+    float play_button_y;
+    float play_button_w;
+    float play_button_h;
+    char play_button_text[BTNSTR_MAX_SIZE + 1];
+    float plus_button_x;
+    float plus_button_y;
+    float plus_button_w;
+    float plus_button_h;
+    float minus_button_x;
+    float minus_button_y;
+    float minus_button_w;
+    float minus_button_h;
+    char update_rate_text[TXTSTR_MAX_SIZE + 1];
+    float rate_x;
+    float rate_y;
+    int max_rate;
+    int min_rate;
+    int rate_step;
+    float next_button_x;
+    float next_button_y;
+    float next_button_w;
+    float next_button_h;
+    char next_button_text[BTNSTR_MAX_SIZE + 1];
+    float prev_button_x;
+    float prev_button_y;
+    float prev_button_w;
+    float prev_button_h;
+    char prev_button_text[BTNSTR_MAX_SIZE + 1];
 } settings;
 
 void _settings_load(int *errors);

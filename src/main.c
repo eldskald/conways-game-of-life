@@ -1,6 +1,9 @@
 #include "manager.h"
 #include <raylib.h>
 
+#define RAYGUI_IMPLEMENTATION
+#include <raygui.h>
+
 #ifdef WEB
 #include <emscripten/emscripten.h>
 #endif

@@ -1,6 +1,8 @@
 #include "manager.h"
 #include "settings.h"
+#include "layout.h"
 #include <raylib.h>
+#include <raygui.h>
 
 int _manager_start() {
 #ifndef DEV
@@ -14,10 +16,11 @@ int _manager_start() {
                _settings_get().window_res_y,
                _settings_get().window_title);
     SetExitKey(KEY_NULL);
+    GuiLoadStyle("res/style_dark.rgs");
+#ifndef WEB
     Image icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
     UnloadImage(icon);
-#ifndef WEB
     SetTargetFPS(_settings_get().window_target_fps);
 #endif
 
@@ -29,7 +32,5 @@ void _manager_end() {
 }
 
 void _manager_tick() {
-    BeginDrawing();
-    ClearBackground(BLACK);
-    EndDrawing();
+    _layout_render();
 }

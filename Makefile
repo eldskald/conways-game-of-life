@@ -49,7 +49,7 @@ LINUX_COMPILE_FLAGS = -Wall -I./src -I./$(INCLUDE_DIR)
 LINUX_LINK_FLAGS = -L./$(LINUX_LIBS) -lraylib -lcsvparse -lGL -lm -lpthread -ldl -lrt -lX11
 WIN_COMPILE_FLAGS = -Wall -I./src -I./$(INCLUDE_DIR)
 WIN_LINK_FLAGS = -L./$(WIN_LIBS) -lraylib -lcsvparse -lgdi32 -lwinmm -lpthread -static -static-libgcc -static-libstdc++
-WEB_COMPILE_FLAGS = -Os -Wall -I./src -I./$(INCLUDE_DIR) -I$(EMSCRIPTEN_PATH)/cache/sysroot/include --preload-file res --preload-file data --shell-file $(BUILD_WEB_SHELL) -DWEB -s USE_GLFW=3 -s EXPORTED_RUNTIME_METHODS=HEAPF32,requestFullscreen
+WEB_COMPILE_FLAGS = -Os -Wall -I./src -I./$(INCLUDE_DIR) -I$(EMSCRIPTEN_PATH)/cache/sysroot/include --preload-file res --preload-file data --shell-file $(BUILD_WEB_SHELL) -DWEB -s USE_GLFW=3 -s EXPORTED_RUNTIME_METHODS=HEAPF32,requestFullscreen -s TOTAL_MEMORY=134217728
 WEB_LINK_FLAGS = -L./$(WEB_LIBS) -lraylib -lcsvparse
 
 # Phony targets
