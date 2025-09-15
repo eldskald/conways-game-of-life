@@ -3,12 +3,15 @@
 #define TITLE_MAX_SIZE 64
 #define BTNSTR_MAX_SIZE 8
 #define TXTSTR_MAX_SIZE 64
+#define MAX_PATTERN_COUNT 8
 
 typedef struct {
     char window_title[TITLE_MAX_SIZE + 1];
     int window_res_x;
     int window_res_y;
     int window_target_fps;
+    char pattern_paths[MAX_PATTERN_COUNT + 1][TXTSTR_MAX_SIZE + 1];
+    int patterns_count;
     float grid_x;
     float grid_y;
     float grid_w;

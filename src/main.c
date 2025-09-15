@@ -10,7 +10,7 @@
 
 int main() {
 
-    if (_manager_start() != 0) return 1;
+    if (_manager_init() != 0) return 1;
 
 #ifdef WEB
     emscripten_set_main_loop(_manager_tick, 0, 1);
@@ -20,7 +20,7 @@ int main() {
     }
 #endif
 
-    _manager_end();
+    _manager_stop();
 
     return 0;
 }

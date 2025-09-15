@@ -1,4 +1,5 @@
 #include "layout.h"
+#include "grid.h"
 #include "settings.h"
 #include <raygui.h>
 #include <raylib.h>
@@ -11,6 +12,10 @@ void _layout_render() {
     BeginDrawing();
     ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
     settings s = _settings_get();
+    _grid_render();
+
+    // Grid
+    DrawTexture(_grid_get().texture, (int)s.grid_x, (int)s.grid_y, WHITE);
 
     // Step button
     if (GuiButton(
