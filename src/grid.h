@@ -1,7 +1,17 @@
 #pragma once
 #include <raylib.h>
+#include <stdbool.h>
+
+#define STARTING_TICKS_PER_SEC 10;
 
 void _grid_init();
 void _grid_stop();
 RenderTexture2D _grid_get();
 void _grid_render();
+void _grid_tick();
+
+float _grid_get_ticks_per_sec();
+void _grid_increase_ticks_per_sec();
+void _grid_decrease_ticks_per_sec();
+bool _grid_is_playing();
+void _grid_toggle_playing();

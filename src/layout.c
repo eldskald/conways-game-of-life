@@ -6,9 +6,8 @@
 #include <raylib.h>
 #include <raymath.h>
 
-static int rates_per_sec = STARTING_RATES_PER_SEC;
-
 void _layout_render() {
+    _grid_tick();
     _grid_render();
     RenderTexture2D grid = _grid_get();
 
@@ -33,10 +32,13 @@ void _layout_render() {
                 s.step_button_h,
             },
             GuiIconText(ICON_PLAYER_NEXT, s.step_button_text))) {
-        _conway_tick();
+        _conway_step();
     }
 
-    // Play button
+    // Play/Pause button
+    const char *play_pause =
+        _grid_is_playing() ? GuiIconText(ICON_PLAYER_PAUSE, s.pause_button_text)
+                           : GuiIconText(ICON_PLAYER_PLAY, s.play_button_text);
     if (GuiButton(
             (Rectangle){
                 s.play_button_x,
@@ -44,8 +46,8 @@ void _layout_render() {
                 s.play_button_w,
                 s.play_button_h,
             },
-            GuiIconText(ICON_PLAYER_PLAY, s.play_button_text))) {
-        TraceLog(LOG_INFO, "Play clicked");
+            play_pause)) {
+        _grid_toggle_playing();
     }
 
     // Update rate
@@ -53,7 +55,7 @@ void _layout_render() {
     const float text_w = 96;
     const float rates_h = 24;
     const float rates_w = 16;
-    const char *rates_label = TextFormat("%d", rates_per_sec);
+    const char *rates_label = TextFormat("%.0f", _grid_get_ticks_per_sec());
     if (GuiButton(
             (Rectangle){
                 s.plus_button_x,
@@ -62,9 +64,7 @@ void _layout_render() {
                 s.plus_button_h,
             },
             GuiIconText(ICON_ARROW_RIGHT, ""))) {
-        rates_per_sec = (int)Clamp((float)(rates_per_sec + s.rate_step),
-                                   (float)s.min_rate,
-                                   (float)s.max_rate);
+        _grid_increase_ticks_per_sec();
     }
     if (GuiButton(
             (Rectangle){
@@ -74,9 +74,7 @@ void _layout_render() {
                 s.minus_button_h,
             },
             GuiIconText(ICON_ARROW_LEFT, ""))) {
-        rates_per_sec = (int)Clamp((float)(rates_per_sec - s.rate_step),
-                                   (float)s.min_rate,
-                                   (float)s.max_rate);
+        _grid_decrease_ticks_per_sec();
     }
     GuiLabel((Rectangle){s.rate_x, s.rate_y, text_w, text_h},
              s.update_rate_text);
@@ -100,6 +98,7 @@ void _layout_render() {
             },
             GuiIconText(ICON_ARROW_DOWN_FILL, s.next_button_text))) {
         _conway_next_pattern();
+        if (_grid_is_playing()) _grid_toggle_playing();
     }
     if (GuiButton(
             (Rectangle){
@@ -110,6 +109,7 @@ void _layout_render() {
             },
             GuiIconText(ICON_ARROW_UP_FILL, s.prev_button_text))) {
         _conway_prev_pattern();
+        if (_grid_is_playing()) _grid_toggle_playing();
     }
 
     EndDrawing();
