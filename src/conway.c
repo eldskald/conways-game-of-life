@@ -28,17 +28,14 @@ void __init_pattern(int index) {
     cursor = index;
 }
 
-void _conway_load_pattern(int index) {
-    settings s = _settings_get();
-    if (index < 0 || index >= s.patterns_count) return;
-
+void __load_pattern(int index) {
     UnloadRenderTexture(conway);
     __init_pattern(index);
 }
 
 void _conway_init() {
     rules_shader = LoadShader(0, "res/conway-rules.frag");
-    __init_pattern(1);
+    __init_pattern(0);
 }
 
 void _conway_stop() {
@@ -62,6 +59,15 @@ void _conway_tick() {
     DrawTexture(conway.texture, 0, 0, WHITE);
     EndShaderMode();
     EndTextureMode();
+}
+
+void _conway_next_pattern() {
+    __load_pattern((cursor + 1) % _settings_get().patterns_count);
+}
+
+void _conway_prev_pattern() {
+    settings s = _settings_get();
+    __load_pattern((cursor + s.patterns_count - 1) % s.patterns_count);
 }
 
 void _conway_toggle_at(int x, int y) {
