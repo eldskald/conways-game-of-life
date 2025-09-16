@@ -23,6 +23,7 @@ void _settings_load(int *errors) {
     strlcpy(_settings.update_rate_text, data[17][1], TXTSTR_MAX_SIZE);
     strlcpy(_settings.next_button_text, data[23][1], BTNSTR_MAX_SIZE);
     strlcpy(_settings.prev_button_text, data[26][1], BTNSTR_MAX_SIZE);
+
     _settings.window_res_x = atoi(data[1][1]);
     _settings.window_res_y = atoi(data[1][2]);
     _settings.window_target_fps = atoi(data[2][1]);
@@ -59,6 +60,7 @@ void _settings_load(int *errors) {
     _settings.prev_button_y = atoi(data[24][2]);
     _settings.prev_button_w = atoi(data[25][1]);
     _settings.prev_button_h = atoi(data[25][2]);
+    _settings.cursor_width = atoi(data[27][1]);
 
     _settings.patterns_count = csvrowlen(data[5]) - 1;
     for (int i = 0; i < _settings.patterns_count; i++) {

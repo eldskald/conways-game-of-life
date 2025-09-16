@@ -105,3 +105,26 @@ void _grid_tick() {
         time -= 1.0f / ticks_per_sec;
     }
 }
+
+Vector2 _grid_get_cell_size() {
+    settings s = _settings_get();
+    Vector2 conway_size = _conway_get_size();
+    return (Vector2){(float)s.grid_w / conway_size.x,
+                     (float)s.grid_h / conway_size.y};
+}
+
+Vector2 _grid_get_cursor() {
+    settings s = _settings_get();
+    Vector2 cursor = GetMousePosition();
+    int x = (int)cursor.x;
+    int y = (int)cursor.y;
+    bool is_on_grid = (x >= s.grid_x) && (x <= s.grid_x + s.grid_w) &&
+                      (y >= s.grid_y) && (y <= s.grid_y + s.grid_h);
+    if (is_on_grid) {
+        Vector2 cell_size = _grid_get_cell_size();
+        int coords_x = ((int)cursor.x - s.grid_x) / (int)cell_size.x;
+        int coords_y = ((int)cursor.y - s.grid_y) / (int)cell_size.y;
+        return (Vector2){(float)coords_x, (float)coords_y};
+    }
+    return (Vector2){-1.0f, -1.0f};
+}

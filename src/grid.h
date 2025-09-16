@@ -15,3 +15,6 @@ void _grid_increase_ticks_per_sec();
 void _grid_decrease_ticks_per_sec();
 bool _grid_is_playing();
 void _grid_toggle_playing();
+
+Vector2 _grid_get_cell_size();
+Vector2 _grid_get_cursor();
