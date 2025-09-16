@@ -1,16 +1,15 @@
 #include "grid.h"
 #include "conway.h"
 #include "settings.h"
-#include <raylib.h>
 #include <raygui.h>
+#include <raylib.h>
 
 static RenderTexture2D grid = (RenderTexture2D){0};
 static Shader shader = (Shader){0};
 
 void _grid_init() {
     settings s = _settings_get();
-    TraceLog(LOG_INFO, "bosta fezes %d, %d", s.grid_w, s.grid_h);
-    grid = LoadRenderTexture((int)s.grid_w, (int)s.grid_h);
+    grid = LoadRenderTexture(s.grid_w, s.grid_h);
     shader = LoadShader(0, "res/grid.frag");
 }
 
@@ -34,21 +33,32 @@ void _grid_render() {
     loc = GetShaderLocation(shader, "textureSize");
     SetShaderValue(shader, loc, texture_size, SHADER_UNIFORM_VEC2);
 
-    Color grid_color = GetColor(GuiGetStyle(DEFAULT, LINE_COLOR));
-    Color live_color = GetColor(GuiGetStyle(DEFAULT, TEXT_COLOR_NORMAL));
-    Color dead_color = BLANK;
+    const float max_col = 255.0f;
+    Color line_c = GetColor(GuiGetStyle(DEFAULT, LINE_COLOR));
+    Color text_c = GetColor(GuiGetStyle(DEFAULT, TEXT_COLOR_NORMAL));
+    float grid_arr[4] = {(float)line_c.r / max_col,
+                         (float)line_c.g / max_col,
+                         (float)line_c.b / max_col,
+                         (float)line_c.a / max_col};
+    float dead_arr[4] = {(float)text_c.r / max_col,
+                         (float)text_c.g / max_col,
+                         (float)text_c.b / max_col,
+                         (float)text_c.a / max_col};
+    float live_arr[4] = {0.0f};
+
     loc = GetShaderLocation(shader, "gridColor");
-    SetShaderValue(shader, loc, &grid_color, SHADER_UNIFORM_VEC4);
+    SetShaderValue(shader, loc, grid_arr, SHADER_UNIFORM_VEC4);
     loc = GetShaderLocation(shader, "liveColor");
-    SetShaderValue(shader, loc, &live_color, SHADER_UNIFORM_VEC4);
+    SetShaderValue(shader, loc, live_arr, SHADER_UNIFORM_VEC4);
     loc = GetShaderLocation(shader, "deadColor");
-    SetShaderValue(shader, loc, &dead_color, SHADER_UNIFORM_VEC4);
+    SetShaderValue(shader, loc, dead_arr, SHADER_UNIFORM_VEC4);
 
     BeginTextureMode(grid);
     BeginShaderMode(shader);
+    ClearBackground(BLACK);
     DrawTexturePro(
         conway,
-        (Rectangle){0, 0, (float)conway.width, (float)conway.height},
+        (Rectangle){0, 0, (float)conway.width, -(float)conway.height},
         (Rectangle){
             0, 0, (float)grid.texture.width, (float)grid.texture.height},
         (Vector2){0, 0},

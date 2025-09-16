@@ -4,18 +4,24 @@
 #include <raygui.h>
 #include <raylib.h>
 #include <raymath.h>
-#include <stdio.h>
 
 static int rates_per_sec = STARTING_RATES_PER_SEC;
 
 void _layout_render() {
+    _grid_render();
+    RenderTexture2D grid = _grid_get();
+
     BeginDrawing();
     ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
     settings s = _settings_get();
-    _grid_render();
 
     // Grid
-    DrawTexture(_grid_get().texture, (int)s.grid_x, (int)s.grid_y, WHITE);
+    DrawRectangle(s.grid_x,
+                  s.grid_y,
+                  s.grid_w + 1,
+                  s.grid_h + 1,
+                  GetColor(GuiGetStyle(DEFAULT, LINE_COLOR)));
+    DrawTexture(grid.texture, s.grid_x, s.grid_y, WHITE);
 
     // Step button
     if (GuiButton(
@@ -46,8 +52,7 @@ void _layout_render() {
     const float text_w = 96;
     const float rates_h = 24;
     const float rates_w = 16;
-    char rates_label[3];
-    sprintf(rates_label, "%d", rates_per_sec);
+    const char *rates_label = TextFormat("%d", rates_per_sec);
     if (GuiButton(
             (Rectangle){
                 s.plus_button_x,

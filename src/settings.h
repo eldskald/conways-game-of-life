@@ -12,10 +12,10 @@ typedef struct {
     int window_target_fps;
     char pattern_paths[MAX_PATTERN_COUNT + 1][TXTSTR_MAX_SIZE + 1];
     int patterns_count;
-    float grid_x;
-    float grid_y;
-    float grid_w;
-    float grid_h;
+    int grid_x;
+    int grid_y;
+    int grid_w;
+    int grid_h;
     float step_button_x;
     float step_button_y;
     float step_button_w;

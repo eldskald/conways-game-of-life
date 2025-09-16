@@ -15,10 +15,17 @@ void __init_pattern(int index) {
 
     BeginTextureMode(conway);
     ClearBackground(BLACK);
-    DrawTexture(pattern, 0, 0, WHITE);
+    DrawTexturePro(
+        pattern,
+        (Rectangle){0, 0, (float)pattern.width, -(float)pattern.height},
+        (Rectangle){0, 0, (float)pattern.width, (float)pattern.height},
+        (Vector2){0, 0},
+        0.0f,
+        WHITE);
     EndTextureMode();
 
     UnloadTexture(pattern);
+    cursor = index;
 }
 
 void _conway_load_pattern(int index) {
@@ -27,12 +34,11 @@ void _conway_load_pattern(int index) {
 
     UnloadRenderTexture(conway);
     __init_pattern(index);
-    cursor = index;
 }
 
 void _conway_init() {
     rules_shader = LoadShader(0, "res/conway-rules.frag");
-    __init_pattern(0);
+    __init_pattern(1);
 }
 
 void _conway_stop() {

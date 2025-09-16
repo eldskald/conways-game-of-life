@@ -59,8 +59,8 @@ void _settings_load(int *errors) {
     _settings.prev_button_w = atoi(data[24][1]);
     _settings.prev_button_h = atoi(data[24][2]);
 
-    _settings.patterns_count = csvrowlen(data[5]);
-    for (int i = 0; i < _settings.patterns_count - 1; i++) {
+    _settings.patterns_count = csvrowlen(data[5]) - 1;
+    for (int i = 0; i < _settings.patterns_count; i++) {
         strlcpy(_settings.pattern_paths[i], data[5][i + 1], TXTSTR_MAX_SIZE);
     }
     // NOLINTEND

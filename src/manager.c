@@ -1,10 +1,10 @@
 #include "manager.h"
-#include "settings.h"
-#include "layout.h"
-#include "grid.h"
 #include "conway.h"
-#include <raylib.h>
+#include "grid.h"
+#include "layout.h"
+#include "settings.h"
 #include <raygui.h>
+#include <raylib.h>
 
 int _manager_init() {
 #ifndef DEV
@@ -13,9 +13,6 @@ int _manager_init() {
     int err = 0;
     _settings_load(&err);
     if (err != 0) return 1;
-
-    _grid_init();
-    _conway_init();
 
     InitWindow(_settings_get().window_res_x,
                _settings_get().window_res_y,
@@ -28,6 +25,9 @@ int _manager_init() {
     UnloadImage(icon);
     SetTargetFPS(_settings_get().window_target_fps);
 #endif
+
+    _grid_init();
+    _conway_init();
 
     return 0;
 }
