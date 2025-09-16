@@ -14,4 +14,3 @@ webgl.zip
 
 # clangd
 /.cache
-compile_commands.json
