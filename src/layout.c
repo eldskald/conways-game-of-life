@@ -1,4 +1,5 @@
 #include "layout.h"
+#include "conway.h"
 #include "grid.h"
 #include "settings.h"
 #include <raygui.h>
@@ -98,7 +99,7 @@ void _layout_render() {
                 s.next_button_h,
             },
             GuiIconText(ICON_ARROW_DOWN_FILL, s.next_button_text))) {
-        TraceLog(LOG_INFO, "Next clicked");
+        _conway_next_pattern();
     }
     if (GuiButton(
             (Rectangle){
@@ -108,7 +109,7 @@ void _layout_render() {
                 s.prev_button_h,
             },
             GuiIconText(ICON_ARROW_UP_FILL, s.prev_button_text))) {
-        TraceLog(LOG_INFO, "Previous clicked");
+        _conway_prev_pattern();
     }
 
     EndDrawing();
