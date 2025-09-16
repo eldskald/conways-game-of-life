@@ -3,6 +3,7 @@
 #include <raylib.h>
 
 static RenderTexture2D conway = (RenderTexture2D){0};
+static RenderTexture2D buffer = (RenderTexture2D){0};
 static int cursor = 0;
 
 static Shader rules_shader = (Shader){0};
@@ -12,6 +13,7 @@ void __init_pattern(int index) {
 
     Texture2D pattern = LoadTexture(s.pattern_paths[index]);
     conway = LoadRenderTexture(pattern.width, pattern.height);
+    buffer = LoadRenderTexture(pattern.width, pattern.height);
 
     BeginTextureMode(conway);
     ClearBackground(BLACK);
@@ -30,6 +32,7 @@ void __init_pattern(int index) {
 
 void __load_pattern(int index) {
     UnloadRenderTexture(conway);
+    UnloadRenderTexture(buffer);
     __init_pattern(index);
 }
 
@@ -40,6 +43,7 @@ void _conway_init() {
 
 void _conway_stop() {
     UnloadRenderTexture(conway);
+    UnloadRenderTexture(buffer);
     UnloadShader(rules_shader);
 }
 
@@ -53,10 +57,15 @@ void _conway_tick() {
     int loc = GetShaderLocation(rules_shader, "gridSize");
     SetShaderValue(rules_shader, loc, grid_size, SHADER_UNIFORM_VEC2);
 
+    BeginTextureMode(buffer);
+    ClearBackground(BLACK);
+    DrawTexture(conway.texture, 0, 0, WHITE);
+    EndTextureMode();
+
     BeginTextureMode(conway);
     ClearBackground(BLACK);
     BeginShaderMode(rules_shader);
-    DrawTexture(conway.texture, 0, 0, WHITE);
+    DrawTexture(buffer.texture, 0, 0, WHITE);
     EndShaderMode();
     EndTextureMode();
 }

@@ -33,7 +33,7 @@ void _layout_render() {
                 s.step_button_h,
             },
             GuiIconText(ICON_PLAYER_NEXT, s.step_button_text))) {
-        TraceLog(LOG_INFO, "Step clicked");
+        _conway_tick();
     }
 
     // Play button
