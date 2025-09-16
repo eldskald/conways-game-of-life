@@ -1,27 +1,27 @@
 Window Title,Conway's Game of Life
-Window Resolution,544,636
+Window Resolution,801,849
 Target FPS,60
 Grid Coords,16,16
-Grid Size,512,512
+Grid Size,768,768
 Patterns,res/pattern-gosper-glider-gun.png,res/pattern-pufferfish.png,res/pattern-p80-gliderless-hwss-gun.png,res/pattern-empty.png
-Step Button Coords,82,544
+Step Button Coords,16,801
 Step Button Size,64,32
 Step Button Text,Step
-Play Button Coords,154,544
+Play Button Coords,86,801
 Play Button Size,80,32
 Play Button Text,Play
 Pause Button Text,Pause
-Update Rate Plus Coords,436,548
+Update Rate Plus Coords,348,805
 Update Rate Plus Size,24,24
-Update Rate Minus Coords,386,548
+Update Rate Minus Coords,298,805
 Update Rate Minus Size,24,24
-Update Rate Text,Updates per sec:
-Update Rate Text Coords,270,544
+Update Rate Text,Updates per sec
+Update Rate Text Coords,182,801
 Update Rate Bounds,5,30
 Update Rate Step,5
-Next Pattern Coords,144,588
-Next Pattern Size,96,32
-Next Pattern Text,Next
-Previous Pattern Coords,304,588
-Previous Pattern Size,96,32
-Previous Pattern Text,Back
+Next Pattern Coords,657,801
+Next Pattern Size,128,32
+Next Pattern Text,Next Pattern
+Previous Pattern Coords,513,801
+Previous Pattern Size,128,32
+Previous Pattern Text,Prev Pattern

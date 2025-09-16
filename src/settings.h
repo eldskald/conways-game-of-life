@@ -1,7 +1,7 @@
 #pragma once
 
 #define TITLE_MAX_SIZE 64
-#define BTNSTR_MAX_SIZE 8
+#define BTNSTR_MAX_SIZE 32
 #define TXTSTR_MAX_SIZE 64
 #define MAX_PATTERN_COUNT 8
 

@@ -96,7 +96,7 @@ void _layout_render() {
                 s.next_button_w,
                 s.next_button_h,
             },
-            GuiIconText(ICON_ARROW_DOWN_FILL, s.next_button_text))) {
+            GuiIconText(ICON_ARROW_RIGHT_FILL, s.next_button_text))) {
         _conway_next_pattern();
         if (_grid_is_playing()) _grid_toggle_playing();
     }
@@ -107,7 +107,7 @@ void _layout_render() {
                 s.prev_button_w,
                 s.prev_button_h,
             },
-            GuiIconText(ICON_ARROW_UP_FILL, s.prev_button_text))) {
+            GuiIconText(ICON_ARROW_LEFT_FILL, s.prev_button_text))) {
         _conway_prev_pattern();
         if (_grid_is_playing()) _grid_toggle_playing();
     }
