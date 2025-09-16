@@ -16,17 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install raylib dependencies
-        run: sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
-
-      - name: Install dependencies
-        run: bin/install-dependencies
-
-      - name: Install bear
-        run: sudo apt install bear
-
-      - name: Generate compile_commands.json
-        run: bear -- make dev
+      # - name: Install raylib dependencies
+      #   run: sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
+      #
+      # - name: Install dependencies
+      #   run: bin/install-dependencies
+      #
+      # - name: Install bear
+      #   run: sudo apt install bear
+      #
+      # - name: Generate compile_commands.json
+      #   run: bear -- make dev
 
       - name: Lint
         uses: cpp-linter/cpp-linter-action@v2
