@@ -1,10 +1,12 @@
 #include "manager.h"
-#include "settings.h"
+#include "conway.h"
+#include "grid.h"
 #include "layout.h"
-#include <raylib.h>
+#include "settings.h"
 #include <raygui.h>
+#include <raylib.h>
 
-int _manager_start() {
+int _manager_init() {
 #ifndef DEV
     SetTraceLogLevel(LOG_NONE);
 #endif
@@ -24,10 +26,15 @@ int _manager_start() {
     SetTargetFPS(_settings_get().window_target_fps);
 #endif
 
+    _grid_init();
+    _conway_init();
+
     return 0;
 }
 
-void _manager_end() {
+void _manager_stop() {
+    _grid_stop();
+    _conway_stop();
     CloseWindow();
 }
 

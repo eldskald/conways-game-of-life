@@ -3,6 +3,7 @@ Window Resolution,544,636
 Target FPS,60
 Grid Coords,16,16
 Grid Size,512,512
+Patterns,res/pattern-empty.png,res/pattern-gosper-glider-gun.png,res/pattern-pufferfish.png,res/pattern-p80-gliderless-hwss-gun.png
 Step Button Coords,82,544
 Step Button Size,64,32
 Step Button Text,Step
