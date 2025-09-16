@@ -3,9 +3,15 @@
 #include "settings.h"
 #include <raygui.h>
 #include <raylib.h>
+#include <raymath.h>
+#include <stdbool.h>
 
 static RenderTexture2D grid = (RenderTexture2D){0};
 static Shader shader = (Shader){0};
+
+static float time = 0.0f;
+static float ticks_per_sec = STARTING_TICKS_PER_SEC;
+static bool is_playing = false;
 
 void _grid_init() {
     settings s = _settings_get();
@@ -23,8 +29,8 @@ RenderTexture2D _grid_get() {
 }
 
 void _grid_render() {
-    Texture2D conway = _conway_get().texture;
-    float grid_size[2] = {(float)conway.width, (float)conway.height};
+    Vector2 conway_res = _conway_get_size();
+    float grid_size[2] = {conway_res.x, conway_res.y};
     int loc = GetShaderLocation(shader, "gridSize");
     SetShaderValue(shader, loc, grid_size, SHADER_UNIFORM_VEC2);
 
@@ -57,8 +63,8 @@ void _grid_render() {
     BeginShaderMode(shader);
     ClearBackground(BLACK);
     DrawTexturePro(
-        conway,
-        (Rectangle){0, 0, (float)conway.width, -(float)conway.height},
+        _conway_get_texture(),
+        (Rectangle){0, 0, conway_res.x, -conway_res.y},
         (Rectangle){
             0, 0, (float)grid.texture.width, (float)grid.texture.height},
         (Vector2){0, 0},
@@ -66,4 +72,36 @@ void _grid_render() {
         WHITE);
     EndShaderMode();
     EndTextureMode();
+}
+
+float _grid_get_ticks_per_sec() {
+    return ticks_per_sec;
+}
+
+void _grid_increase_ticks_per_sec() {
+    settings s = _settings_get();
+    ticks_per_sec = Clamp(ticks_per_sec + s.rate_step, s.min_rate, s.max_rate);
+}
+
+void _grid_decrease_ticks_per_sec() {
+    settings s = _settings_get();
+    ticks_per_sec = Clamp(ticks_per_sec - s.rate_step, s.min_rate, s.max_rate);
+}
+
+bool _grid_is_playing() {
+    return is_playing;
+}
+
+void _grid_toggle_playing() {
+    is_playing = !is_playing;
+}
+
+void _grid_tick() {
+    if (!is_playing) return;
+
+    time += GetFrameTime();
+    if (time >= 1.0f / ticks_per_sec) {
+        _conway_step();
+        time -= 1.0f / ticks_per_sec;
+    }
 }

@@ -26,6 +26,7 @@ typedef struct {
     float play_button_w;
     float play_button_h;
     char play_button_text[BTNSTR_MAX_SIZE + 1];
+    char pause_button_text[BTNSTR_MAX_SIZE + 1];
     float plus_button_x;
     float plus_button_y;
     float plus_button_w;
@@ -37,9 +38,9 @@ typedef struct {
     char update_rate_text[TXTSTR_MAX_SIZE + 1];
     float rate_x;
     float rate_y;
-    int max_rate;
-    int min_rate;
-    int rate_step;
+    float max_rate;
+    float min_rate;
+    float rate_step;
     float next_button_x;
     float next_button_y;
     float next_button_w;
