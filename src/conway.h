@@ -11,4 +11,4 @@ void _conway_step();
 void _conway_next_pattern();
 void _conway_prev_pattern();
 
-void _conway_toggle_at(int x, int y);
+void _conway_toggle_at(Vector2 coords);

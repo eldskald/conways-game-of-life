@@ -51,6 +51,7 @@ typedef struct {
     float prev_button_w;
     float prev_button_h;
     char prev_button_text[BTNSTR_MAX_SIZE + 1];
+    float cursor_width;
 } settings;
 
 void _settings_load(int *errors);
