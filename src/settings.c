@@ -2,7 +2,6 @@
 #include <csvparse.h>
 #include <raylib.h>
 #include <stdlib.h>
-#include <string.h>
 
 static settings _settings;
 
@@ -16,13 +15,13 @@ void _settings_load(int *errors) {
     }
 
     // NOLINTBEGIN
-    strlcpy(_settings.window_title, data[0][1], TITLE_MAX_SIZE);
-    strlcpy(_settings.step_button_text, data[8][1], BTNSTR_MAX_SIZE);
-    strlcpy(_settings.play_button_text, data[11][1], BTNSTR_MAX_SIZE);
-    strlcpy(_settings.pause_button_text, data[12][1], BTNSTR_MAX_SIZE);
-    strlcpy(_settings.update_rate_text, data[17][1], TXTSTR_MAX_SIZE);
-    strlcpy(_settings.next_button_text, data[23][1], BTNSTR_MAX_SIZE);
-    strlcpy(_settings.prev_button_text, data[26][1], BTNSTR_MAX_SIZE);
+    TextCopy(_settings.window_title, data[0][1]);
+    TextCopy(_settings.step_button_text, data[8][1]);
+    TextCopy(_settings.play_button_text, data[11][1]);
+    TextCopy(_settings.pause_button_text, data[12][1]);
+    TextCopy(_settings.update_rate_text, data[17][1]);
+    TextCopy(_settings.next_button_text, data[23][1]);
+    TextCopy(_settings.prev_button_text, data[26][1]);
 
     _settings.window_res_x = atoi(data[1][1]);
     _settings.window_res_y = atoi(data[1][2]);
@@ -64,7 +63,7 @@ void _settings_load(int *errors) {
 
     _settings.patterns_count = csvrowlen(data[5]) - 1;
     for (int i = 0; i < _settings.patterns_count; i++) {
-        strlcpy(_settings.pattern_paths[i], data[5][i + 1], TXTSTR_MAX_SIZE);
+        TextCopy(_settings.pattern_paths[i], data[5][i + 1]);
     }
     // NOLINTEND
 
