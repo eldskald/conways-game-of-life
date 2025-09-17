@@ -1,6 +1,8 @@
 # Conway's Game of Life
 
-This project is me practicing more low level programming with raylib.
+This project is me practicing more low level programming with raylib. This is an implementation of [Conway's Game of Life](https://conwaylife.com/) with pure C and OpenGL, where the state is a texture and each step iteration is done by the GPU.
+
+You can play it on the web [here](https://eldskald.itch.io/conways-game-of-life).
 
 ## Dependencies
 
@@ -20,7 +22,7 @@ Then, run the following to install dependencies:
 bin/install-dependencies
 ```
 
-This will install [raylib](https://github.com/raysan5/raylib), [raygui](https://github.com/raysan5/raygui) and [csvparse](https://github.com/eldskald/csvparse). You need [emsdk](https://emscripten.org/docs/getting_started/downloads.html) and its path on `.env` to compile it for web. If you don't have it, it will still work for the desktop versions. More info on the web version later.
+This will install [raylib](https://github.com/raysan5/raylib), [raygui](https://github.com/raysan5/raygui) and [csvparse](https://github.com/eldskald/csvparse). You need [emsdk](https://emscripten.org/docs/getting_started/downloads.html) and its path on `.env` to compile it for web. If you don't have it, it will still work for the desktop versions. More info on the web version later. We are also using [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) and [clang-format](https://clang.llvm.org/docs/ClangFormat.html) for linting and formatting.
 
 To erase dependencies and builds in case you want to redo everything, run:
 
