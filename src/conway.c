@@ -121,5 +121,34 @@ Texture2D _conway_get_texture() {
     return final.texture;
 }
 
-void _conway_toggle_at(int x, int y) {
+void _conway_toggle_at(Vector2 coords) {
+    Vector2 final_size = _conway_get_size();
+    Vector2 buffer_size = Vector2Scale(final_size, EXTRA_CELLS_FACTOR);
+    Vector2 conway_orig = (Vector2){(buffer_size.x - final_size.x) / TWO,
+                                    (buffer_size.y - final_size.y) / TWO};
+    Vector2 target = (Vector2){conway_orig.x + coords.x,
+                               buffer_size.y - (conway_orig.y + coords.y) - 1};
+
+    const int max = 255;
+    Image conway_image = LoadImageFromTexture(conway.texture);
+    Color clicked = GetImageColor(
+        conway_image, (int)target.x, (int)conway_orig.y + (int)coords.y);
+    Color toggled =
+        (Color){max - clicked.r, max - clicked.g, max - clicked.b, max};
+    UnloadImage(conway_image);
+
+    BeginTextureMode(conway);
+    DrawPixel((int)target.x, (int)target.y, toggled);
+    EndTextureMode();
+
+    BeginTextureMode(final);
+    ClearBackground(BLACK);
+    DrawTexturePro(
+        conway.texture,
+        (Rectangle){conway_orig.x, conway_orig.y, final_size.x, -final_size.y},
+        (Rectangle){0, 0, final_size.x, final_size.y},
+        (Vector2){0, 0},
+        0.0f,
+        WHITE);
+    EndTextureMode();
 }

@@ -21,8 +21,12 @@ void _layout_render() {
                   s.grid_w + 1,
                   s.grid_h + 1,
                   GetColor(GuiGetStyle(DEFAULT, LINE_COLOR)));
-    DrawTexture(grid.texture, s.grid_x, s.grid_y, WHITE);
     Vector2 cursor = _grid_get_cursor();
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && cursor.x >= 0.0f) {
+        _conway_toggle_at(cursor);
+        _grid_render();
+    }
+    DrawTexture(grid.texture, s.grid_x, s.grid_y, WHITE);
     if (cursor.x >= 0.0f) {
         Vector2 cell_size = _grid_get_cell_size();
         DrawRectangleLinesEx(
