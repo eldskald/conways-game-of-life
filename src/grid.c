@@ -100,7 +100,7 @@ void _grid_tick() {
     if (!is_playing) return;
 
     time += GetFrameTime();
-    if (time >= 1.0f / ticks_per_sec) {
+    while (time >= 1.0f / ticks_per_sec) {
         _conway_step();
         time -= 1.0f / ticks_per_sec;
     }
