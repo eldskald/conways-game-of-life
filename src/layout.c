@@ -24,7 +24,6 @@ void _layout_render() {
     Vector2 cursor = _grid_get_cursor();
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && cursor.x >= 0.0f) {
         _conway_toggle_at(cursor);
-        _grid_render();
     }
     DrawTexture(grid.texture, s.grid_x, s.grid_y, WHITE);
     if (cursor.x >= 0.0f) {
