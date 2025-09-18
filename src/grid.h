@@ -2,8 +2,6 @@
 #include <raylib.h>
 #include <stdbool.h>
 
-#define STARTING_TICKS_PER_SEC 10;
-
 void _grid_init();
 void _grid_stop();
 RenderTexture2D _grid_get();

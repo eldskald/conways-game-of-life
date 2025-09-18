@@ -20,8 +20,8 @@ void _settings_load(int *errors) {
     TextCopy(_settings.play_button_text, data[11][1]);
     TextCopy(_settings.pause_button_text, data[12][1]);
     TextCopy(_settings.update_rate_text, data[17][1]);
-    TextCopy(_settings.next_button_text, data[23][1]);
-    TextCopy(_settings.prev_button_text, data[26][1]);
+    TextCopy(_settings.next_button_text, data[24][1]);
+    TextCopy(_settings.prev_button_text, data[27][1]);
 
     _settings.window_res_x = atoi(data[1][1]);
     _settings.window_res_y = atoi(data[1][2]);
@@ -51,15 +51,16 @@ void _settings_load(int *errors) {
     _settings.min_rate = atoi(data[19][1]);
     _settings.max_rate = atoi(data[19][2]);
     _settings.rate_step = atoi(data[20][1]);
-    _settings.next_button_x = atoi(data[21][1]);
-    _settings.next_button_y = atoi(data[21][2]);
-    _settings.next_button_w = atoi(data[22][1]);
-    _settings.next_button_h = atoi(data[22][2]);
-    _settings.prev_button_x = atoi(data[24][1]);
-    _settings.prev_button_y = atoi(data[24][2]);
-    _settings.prev_button_w = atoi(data[25][1]);
-    _settings.prev_button_h = atoi(data[25][2]);
-    _settings.cursor_width = atoi(data[27][1]);
+    _settings.starting_rate = atoi(data[21][1]);
+    _settings.next_button_x = atoi(data[22][1]);
+    _settings.next_button_y = atoi(data[22][2]);
+    _settings.next_button_w = atoi(data[23][1]);
+    _settings.next_button_h = atoi(data[23][2]);
+    _settings.prev_button_x = atoi(data[25][1]);
+    _settings.prev_button_y = atoi(data[25][2]);
+    _settings.prev_button_w = atoi(data[26][1]);
+    _settings.prev_button_h = atoi(data[26][2]);
+    _settings.cursor_width = atoi(data[28][1]);
 
     _settings.patterns_count = csvrowlen(data[5]) - 1;
     for (int i = 0; i < _settings.patterns_count; i++) {
