@@ -10,13 +10,14 @@ static RenderTexture2D grid = (RenderTexture2D){0};
 static Shader shader = (Shader){0};
 
 static float time = 0.0f;
-static float ticks_per_sec = STARTING_TICKS_PER_SEC;
+static float ticks_per_sec = 0.0f;
 static bool is_playing = false;
 
 void _grid_init() {
     settings s = _settings_get();
     grid = LoadRenderTexture(s.grid_w, s.grid_h);
     shader = LoadShader(0, "res/grid.frag");
+    ticks_per_sec = s.starting_rate;
 }
 
 void _grid_stop() {

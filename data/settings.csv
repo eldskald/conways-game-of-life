@@ -19,6 +19,7 @@ Update Rate Text,Updates per sec
 Update Rate Text Coords,182,801
 Update Rate Bounds,5,30
 Update Rate Step,5
+Update Rate Initial,10
 Next Pattern Coords,657,801
 Next Pattern Size,128,32
 Next Pattern Text,Next Pattern

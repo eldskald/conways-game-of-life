@@ -38,6 +38,7 @@ typedef struct {
     char update_rate_text[TXTSTR_MAX_SIZE + 1];
     float rate_x;
     float rate_y;
+    float starting_rate;
     float max_rate;
     float min_rate;
     float rate_step;
