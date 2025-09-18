@@ -79,6 +79,14 @@ To make a web build, you will need to have [emsdk](https://emscripten.org/docs/g
 
 If you can't compile either `raylib` or the game, pay attention to the error messages, might be some of these binaries that can't be found. Something might not be on your `PATH` or you did not set your `.env` correctly.
 
+## History
+
+- v1.0.1 - September 18th, 2025
+  - Fix the grid updating at high speed when you change tabs and go back to it.
+  - Make editing cells a bit faster.
+- v1.0.0 - September 16th, 2025
+  - Initial Release.
+
 ## License
 
 This is an unlicensed project, meaning you can do whatever you want with it.
